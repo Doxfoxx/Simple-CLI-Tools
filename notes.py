@@ -1,6 +1,6 @@
 import datetime
 print("Do you want to view or add notes? (view/add)")
-choice = input()
+choice = input().lower()
 if choice == "add":
     print("Enter a note: ")
     note = input()
@@ -9,11 +9,12 @@ if choice == "add":
     print("Note saved.")
 elif choice == "view":
     print("Your notes:")
+    print("-------------")
     try:
         with open("notes.txt", "r") as file:
             notes = file.readlines()
-            for note in notes:
-                print(note.strip())
+            for number, note in enumerate(notes, start=1):
+                print(f"{number}. {note.strip()}")
     except FileNotFoundError:
         print("No notes found.")
 else:
